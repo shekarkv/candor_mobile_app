@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Reimbursement Data</ion-title>
+  </ion-toolbar> 
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item no-lines>
+      <ion-label stacked>
+        <b>Bill Date*</b>
+      </ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" style="padding-left:3% !important;" [(ngModel)]="bill_date">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked>
+        <b>Bill No*</b>
+      </ion-label>
+      <ion-input type="number" [(ngModel)]="bill_no"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked>
+        <b>Bill Amount*</b>
+      </ion-label>
+      <ion-input type="number" [(ngModel)]="bill_amt"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked>
+        <b>Remarks*</b>
+      </ion-label>
+      <ion-textarea [(ngModel)]="remarks" textarea></ion-textarea>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked>
+        <b>Status*</b>
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="status" value="New"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines *ngIf="att_prev!=''">
+      <div style="object-fit: cover;border-radius:5px;">
+        <ion-card style="background-color: #ececec;margin-top:15%;">
+          <img src="{{att_prev}}" style="padding: 3px;object-fit: cover;" height="170px" />
+        </ion-card>
+      </div>
+    </ion-item>
+
+    <div style="text-align: center;" *ngIf="view_file_name!=''">
+      <ion-label *ngIf="view_file_name!=''" style="margin-top:15%;">
+        {{view_file_name}}
+      </ion-label>
+    </div>
+
+  </ion-list>
+
+  <ion-fab side="end" side="bottom">
+    <!-- <button ion-fab color="secondary">
+      <ion-icon name="attach"></ion-icon>
+    </button> -->
+    <!-- <ion-fab-list side="left"> -->
+      <button ion-fab (click)="galleryFunc()">
+        <ion-icon name="images"></ion-icon>
+      </button>
+      <!-- <button ion-fab (click)="fileFunc()">
+        <ion-icon name="folder-open"></ion-icon>
+      </button> -->
+      <!-- <button ion-fab (click)="cameraFunc()">
+        <ion-icon name="camera"></ion-icon>
+      </button> -->
+    <!-- </ion-fab-list> -->
+  </ion-fab>
+
+</ion-content>
+<ion-footer>
+  <ion-row padding>
+    <ion-col size="6">
+      <ion-button (click)="Submit()"  block color="success" style="float:right;" small>Submit</ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button (click)="Cancel()"  block color="danger" style="float:right;" small>Cancel</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

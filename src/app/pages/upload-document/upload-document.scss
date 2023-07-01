@@ -1,0 +1,20 @@
+// page-upload-document {
+    .options{
+        font-size: 25px;
+        margin-top:10%;
+        text-align:center;
+        padding: 0 5% 0 5%
+    }
+    ion-input {
+        border: 1px solid lightgray;
+        border-radius:5px;
+        padding-left:3%;
+        font-weight:bold;
+        letter-spacing: 0.5px;
+      }
+    ion-input:focus-within {
+        border-radius:5px;
+        border: 1px solid darkgray;
+        padding-left:3%;
+    }
+// }

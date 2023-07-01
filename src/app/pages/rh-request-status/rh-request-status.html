@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>RH Request Status</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item no-lines style="padding-top:4%;padding-bottom:4%;">
+    <ion-label style="color:#006666;padding-left:0px;"><b>Please Select Financial Year</b></ion-label>
+    <ion-select [(ngModel)]="leave_year" (ionChange)="getRHRequestStatus()">
+      <ion-select-option *ngFor="let f of fin_List" [value]="f.fin_int_code">{{f.year}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <h4 class="msg"
+    *ngIf="this.applicant_list == '' || this.applicant_list == 'undefined' || this.applicant_list == undefined ">
+    {{loading_msg}}
+  </h4>
+
+  <ion-list>
+    <ion-item *ngFor="let ap of applicant_list">
+
+      
+
+      <ion-avatar slot="start">
+        <img src="{{ap.employee_image}}">
+      </ion-avatar>
+
+      <ion-label>
+        <p style="color:darkgoldenrod;"><b>{{ap.emp_code}}</b></p>
+        <p style="color:maroon;"><b>{{ap.holiday_name}}</b></p>
+        <p style="color:darkslategray;"><b class="ion-text-wrap">{{ap.reason}}</b></p>
+      </ion-label>
+
+      <p class="ion-text-wrap" *ngIf="ap.approved_status == 'New' || ap.approved_status == 'new' "
+        style="color:navy;float:right;margin-top:7.5%;margin-right:3%;">
+        <b>{{ap.approved_status}}</b></p>
+
+      <p class="ion-text-wrap" *ngIf="ap.approved_status == 'Rejected' || ap.approved_status == 'rejected' "
+        style="color:crimson;float:right;margin-top:7.5%;margin-right:3%;">
+        <b>{{ap.approved_status}}</b></p>
+
+      <p class="ion-text-wrap" *ngIf=" ap.approved_status == 'Cancelled' || ap.approved_status == 'cancelled' "
+        style="color:orangered;float:right;margin-top:7.5%;margin-right:3%;">
+        <b>{{ap.approved_status}}</b></p>
+
+      <p class="ion-text-wrap" *ngIf="ap.approved_status == 'Approved' || ap.approved_status == 'approved' "
+        style="color:darkgreen;float:right;margin-top:7.5%;margin-right:3%;">
+        <b>{{ap.approved_status}}</b></p>
+
+      <p class="ion-text-wrap" *ngIf="ap.approved_status == 'Cancellation Request' || ap.approved_status == 'cancellation request' "
+        style="color:salmon;float:right;margin-top:7.5%;margin-right:3%;">
+        <b test-wrap>{{ap.approved_status}}</b></p>
+        
+    </ion-item>
+  </ion-list>
+
+</ion-content>

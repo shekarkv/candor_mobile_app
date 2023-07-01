@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="primary"> 
+    <ion-title>Upload Proofs</ion-title>
+    <ion-buttons slot="end">
+      <ion-button icon-start icon-only (click)="dismissView()">
+        <ion-icon name="close" style="float:right;margin: 2% 2% 0 0;font-size:4.5vh;"></ion-icon>
+      </ion-button>
+    </ion-buttons> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item lines="none">
+    <ion-label position="stacked"><b class="ion-text-wrap">Amount</b></ion-label>
+    <ion-input type="number" [(ngModel)]="amount"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label position="stacked"><b class="ion-text-wrap">Notes</b></ion-label>
+    <ion-input type="text" [(ngModel)]="notes" maxlength="12"></ion-input>
+  </ion-item>
+
+  <ion-item lines="none" *ngIf="att_prev!=''">
+    <div style="object-fit: cover;border-radius:5px;">
+      <ion-card style="background-color: #ececec;margin-top:15%;">
+        <img src="{{att_prev}}" style="padding: 3px;object-fit: cover;" height="170px" />
+      </ion-card>
+    </div>
+  </ion-item>
+
+  <div style="text-align: center;" *ngIf="view_file_name!=''">
+    <ion-label *ngIf="view_file_name!=''" style ="margin-top:15%;">
+      {{view_file_name}}
+    </ion-label>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button color="secondary">
+      <ion-icon name="attach"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <!-- <button ion-fab (click)="galleryFunc()">
+        <ion-icon name="images"></ion-icon>
+      </button> -->
+      <ion-fab-button (click)="fileFunc()">
+        <ion-icon name="folder-open"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="cameraFunc()">
+        <ion-icon name="camera"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>
+
+<ion-footer>
+  <ion-row padding>
+    <ion-col size="6">
+      <ion-button expand="block" color="success" (click)="submitItDeclartionProofs()" style="float:right;" small>Submit</ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button  expand="block" color="danger" style="float:left;" (click)="cancel()" small>Cancel</ion-button>
+    </ion-col>
+  </ion-row>
+  <p style="text-align:center;" text-wrap>Note: Please upload document before submitting</p>
+</ion-footer>

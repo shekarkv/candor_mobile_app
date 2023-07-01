@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Approve Leave Applicant</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+
+    <ion-item no-lines>
+      <ion-label stacked><b>Name</b></ion-label>
+      <ion-input type="text" [(ngModel)]="name" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked><b>Leave Type</b></ion-label>
+      <ion-input type="text" [(ngModel)]="type" readonly></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col size="6" style="padding-left:5%;">
+        <ion-label stacked style="color:#0086d0;"><b>Approve From Date</b></ion-label>
+        <ion-input type="text" [(ngModel)]="from_date" readonly></ion-input>
+      </ion-col>
+      <ion-col size="6" style="padding-left:5%;">
+        <ion-label stacked style="color:#0086d0;"><b>Approve From Half</b></ion-label>
+        <ion-input type="text" [(ngModel)]="from_half" readonly></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6" style="padding-left:5%;">
+        <ion-label stacked style="color:#0086d0;"><b>Approve To Date</b></ion-label>
+        <ion-input type="text" [(ngModel)]="to_date" readonly></ion-input>
+      </ion-col>
+      <ion-col size="6" style="padding-left:5%;">
+        <ion-label stacked style="color:#0086d0;"><b>Approve To Half</b></ion-label>
+        <ion-input type="text" [(ngModel)]="to_half" readonly></ion-input>
+      </ion-col>
+    </ion-row>
+
+    <ion-item no-lines>
+      <ion-label stacked><b>Approved Days</b></ion-label>
+      <ion-input type="text" [(ngModel)]="appr_days" readonly></ion-input>
+    </ion-item>
+
+    <ion-item no-lines style="padding-bottom:15%;">
+      <ion-label stacked><b>Approved Remarks</b></ion-label>
+      <ion-input type="text" [(ngModel)]="remarks" required></ion-input>
+    </ion-item>
+
+    <ion-row padding>
+      <ion-col size="6">
+        <ion-button (click)="submit('Approved')"  block color="success" style="float:right;"
+          small>Approved</ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="submit('Rejected')"  block color="danger" style="float:right;"
+          small>Rejected</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+</ion-content>

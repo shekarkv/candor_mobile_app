@@ -1,0 +1,111 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Calendar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div style="margin-right:2%;margin-left:3%;margin-top:10%;">
+
+    <div class="calendar-header">
+      <ion-row class="calendar-month">
+        <ion-col size="2" (click)="goToLastMonth()" style="margin-top:3%;">
+          <ion-icon name="arrow-back"></ion-icon>
+        </ion-col>
+        <ion-col size="8" style="margin-top:3%;">{{currentMonth}} {{currentYear}}</ion-col>
+        <ion-col size="2" (click)="goToNextMonth()" style="margin-top:3%;">
+          <ion-icon name="arrow-forward"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="calendar-body">
+      <ion-grid [fixed]="true">
+        <ion-row class="calendar-weekday">
+          <ion-col>Su</ion-col>
+          <ion-col>Mo</ion-col>
+          <ion-col>Tu</ion-col>
+          <ion-col>We</ion-col>
+          <ion-col>Th</ion-col>
+          <ion-col>Fr</ion-col>
+          <ion-col>Sa</ion-col>
+        </ion-row>
+
+        <ion-row class="calendar-date">
+          <ion-col size="1" *ngFor="let lastDay of daysInLastMonth" class="last-month">{{lastDay}}</ion-col>
+          <ion-col size="1" *ngFor="let day of daysInThisMonth">
+
+            <span class="currentDate"
+              *ngIf="day.is_cur == 'Yes' && day.is_leave == 'No' && day.is_gh == 'No' && day.is_wh == 'No'">
+              {{day.day_num}}
+            </span>
+
+            <span class="currentLeave" (click)="viewLeaveBalance()"
+              *ngIf="day.is_cur == 'Yes' && day.is_leave == 'Yes' && day.is_gh == 'No' && day.is_wh == 'No'">{{day.day_num}}</span>
+
+            <span class="currentGh"
+              *ngIf="day.is_cur == 'Yes' && day.is_leave == 'No' && day.is_gh == 'Yes' && day.is_wh == 'No'">{{day.day_num}}</span>
+
+            <span class="currentWh"
+              *ngIf="day.is_cur == 'Yes' && day.is_leave == 'No' && day.is_gh == 'No' && day.is_wh == 'Yes'">{{day.day_num}}</span>
+
+            <span class="otherDate"
+              *ngIf="day.is_cur == 'No' && day.is_leave == 'No' && day.is_gh == 'No' && day.is_wh == 'No'">{{day.day_num}}</span>
+
+            <span class="otherLeave" (click)="viewLeaveBalance()"
+              *ngIf="day.is_cur == 'No' && day.is_leave == 'Yes' && day.is_gh == 'No' && day.is_wh == 'No'">{{day.day_num}}</span>
+
+            <span class="otherGh"
+              *ngIf="day.is_cur == 'No' && day.is_leave == 'No' && day.is_gh == 'Yes' && day.is_wh == 'No'">{{day.day_num}}</span>
+
+            <span class="otherWh"
+              *ngIf="day.is_cur == 'No' && day.is_leave == 'No' && day.is_gh == 'No' && day.is_wh == 'Yes'">{{day.day_num}}</span>
+
+          </ion-col>
+          <ion-col size="1" *ngFor="let nextDay of daysInNextMonth" class="next-month">{{nextDay}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+  </div>
+
+  <br /> <br />
+
+  <ion-card>
+
+    <legend>Details</legend>
+
+    <ion-card-content>
+
+      <ion-row>
+        <ion-col size="2">
+          <span class="leave"></span>
+        </ion-col>
+        <ion-col size="1">-</ion-col>
+        <ion-col size="6" style="text-align:center;">Leave Taken</ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="2">
+          <span class="gh"></span>
+        </ion-col>
+        <ion-col size="1">-</ion-col>
+        <ion-col size="6" style="text-align:center;">General Holiday</ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="2">
+          <span class="wh"></span>
+        </ion-col>
+        <ion-col size="1">-</ion-col>
+        <ion-col size="6" style="text-align:center;">Weekly Holiday</ion-col>
+      </ion-row>
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

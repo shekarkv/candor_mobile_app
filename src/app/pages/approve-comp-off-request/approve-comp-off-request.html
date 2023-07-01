@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Approve CompOff Request</ion-title>
+  </ion-toolbar> 
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+
+    <ion-item no-lines>
+      <ion-label stacked><b>Requesting Employee</b></ion-label>
+      <ion-input type="text" [(ngModel)]="name" readonly></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked style="color:#0086d0;"><b>Requesting Date</b></ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" style="padding-left:3% !important;" [(ngModel)]="req_date">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked><b>Approved Remarks</b></ion-label>
+      <ion-input type="text" [(ngModel)]="remarks" required></ion-input>
+    </ion-item>
+
+    <ion-row style="padding:2% 0 5% 5%;">
+      <ion-col size="6">
+        <ion-button  (click)="submit('Approved')" block color="success" style="float:right;"
+          small>Approve</ion-button >
+      </ion-col>
+      <ion-col size="6">
+        <ion-button  (click)="submit('Rejected')"  block color="danger" style="float:right;"
+          small>Reject</ion-button >
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+</ion-content>

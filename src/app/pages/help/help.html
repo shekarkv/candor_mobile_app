@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Help Desk</ion-title>
+  </ion-toolbar> 
+</ion-header>
+
+<ion-content padding>
+  <ion-row>
+    <ion-col size="3">
+      <p style="color:#006080;"><b>Subject</b></p>
+    </ion-col>
+    <ion-col size="9">
+      <ion-input class="custom-input" type="text" [(ngModel)]="subject" ></ion-input>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="3">
+      <p style="color:#006080;"><b>Query</b></p>
+    </ion-col>
+    <ion-col size="9">
+      <ion-textarea class="custom-input" [(ngModel)]="query" ></ion-textarea>
+    </ion-col>
+  </ion-row>
+
+
+
+  <!-- <ion-item lines="none" *ngIf="att_prev!=''">
+    <div style="object-fit: cover;border-radius:5px;">
+      <ion-card style="background-color: #ececec;">
+        <ion-icon (click)="deleteAttachmentFile()" style="color:crimson;position:absolute;font-size:20px;" class="fa fa-trash"></ion-icon>
+        <img src="{{att_prev}}" style="padding: 3px;object-fit: cover;" height="170px" />
+      </ion-card>
+    </div>
+  </ion-item> -->
+
+  <!-- <div style="text-align: center;" *ngIf="view_file_name!=''">
+    <ion-label *ngIf="view_file_name!=''">
+      {{view_file_name}}
+    </ion-label>
+  </div> -->
+
+  <!-- <ion-fab  side="end" side="bottom"> 
+      <ion-fab-button (click)="galleryFunc()">
+        <ion-icon name="images"></ion-icon>
+      </ion-fab-button> 
+  </ion-fab> -->
+
+</ion-content>
+
+<ion-footer>
+  <ion-row padding>
+    <ion-col size="6">
+      <ion-button expand="block"  color="success" (click)="saveOnlineHelpQuery()" style="float:left;" size="small">
+        <ion-icon name="paper-plane" >&nbsp;&nbsp;</ion-icon>
+        <b>Submit</b>
+      </ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button expand="block" color="danger" style="float:right;" size="small" (click)="cancelQuery()">
+        <ion-icon name="close" >&nbsp;&nbsp;</ion-icon>
+        <b>Clear</b>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

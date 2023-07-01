@@ -1,0 +1,23 @@
+// page-holiday-list {
+    .card_header{
+        padding:5px 5px 5px 6px;
+        background-color:grey;
+        color:white;
+        font-weight:bolder;
+        text-align:center;
+    }
+    .odd{
+        background-color: #f9f9f9;
+    }
+    .even{
+      background-color: white;
+    }
+
+    .data-row {
+        border: 1px solid #000;
+      }
+      
+      .data-col {
+        padding: 5px;
+      }
+// }

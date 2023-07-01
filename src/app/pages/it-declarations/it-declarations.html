@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>IT Declarations</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item lines="none" style="padding-top:4%;padding-bottom:2%;">
+    <ion-label style="color:#0086d0;padding-left:0px;"><b>Please Select Financial Year</b></ion-label>
+    <ion-select [(ngModel)]="fin_year" (ionChange)="getOnlineTaxRegime();">
+      <ion-select-option *ngFor="let year of yearList" [value]="year.fin_int_code">{{year.financial_year}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item style="padding-top:4%;padding-bottom:2%;" *ngIf="this.tax_regime != '' ">
+    <b style="color:#0086d0;padding-left:0px;">Tax Regime - {{this.tax_regime}}</b>
+  </ion-item>
+
+
+  <h4 class="msg" *ngIf="(this.it_data == '' || this.it_data == 'undefined' || this.it_data == undefined) && this.isData == 'yes' ">
+    {{loading_msg}}
+  </h4>
+
+  <h4 class="note" style="padding-left:4%;" *ngIf="(this.tax_regime != '' && this.tax_regime == 'New' )">
+    Employees who opt for new tax regime need not provide any declarations.
+  </h4>
+   
+  <div *ngIf=" this.it_data != '' ">
+    <ion-card  *ngFor="let it of it_data;let i = index;" id="it.group_name">
+
+      <h4 style="color:#0086d0;padding:5px 5px 5px 7px;" (click)="toggleGroup(it.group_name)"
+        [ngClass]="{active: isGroupShown(it.group_name)}">
+        <b>{{it.group_name}}</b>
+        <ion-icon color="primary" class="ion-float-right" [name]="isGroupShown(it.group_name) ? 'caret-down-outline' : 'caret-forward-outline'"
+          style="padding-right:2%;"></ion-icon>
+      </h4>
+
+      <div *ngIf="isGroupShown(it.group_name)">
+        <div *ngFor="let ele of it.details;" style="padding-left:4%;padding-right:4%;">
+
+          <ion-row>
+            <label class="tooltip"><b class="ion-text-wrap">{{ele.head}}</b><span
+                class="tooltiptext tooltip-bottom">{{ele.online_tool_tip}}</span></label>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <input type="text" id="{{ele.id}}" value="{{ele.amount}}" style="margin-bottom:5%;background: white;" />
+            </ion-col>
+          </ion-row>
+          
+        </div>
+      </div>
+
+    </ion-card>
+  </div>
+
+</ion-content>
+<ion-footer>
+  <ion-button expand="full" (click)="save()" color="primary">Save</ion-button>
+</ion-footer>

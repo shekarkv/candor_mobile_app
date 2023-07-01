@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>List of Holidays</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <h4 class="msg" *ngIf="this.holiday_list == '' || this.holiday_list == 'undefined' || this.holiday_list == undefined ">
+    {{loading_msg}}
+  </h4>
+
+  <ion-card *ngIf="this.holiday_list != ''">
+    <ion-card-header class="card_header">
+      Holidays
+    </ion-card-header>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row class="data-row">
+          <ion-col class="data-col" size="2" style="text-align:center;font-weight:bolder;color:#0086d0;">SL No</ion-col>
+          <ion-col class="data-col" size="6" style="text-align:center;font-weight:bolder;color:#0086d0;">Holiday</ion-col>
+          <ion-col class="data-col" size="4" style="text-align:center;font-weight:bolder;color:#0086d0;">Date</ion-col>
+        </ion-row>
+
+        <ion-row class="data-row" *ngFor="let h of holiday_list;let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even' ">
+          <ion-col class="data-col" size="2" style="float:right;font-weight:bold;color:black;">{{i+1}}</ion-col>
+          <ion-col class="data-col" size="6" style="float:left;font-weight:bold;color:black;" class="ion-text-wrap">{{h.holiday_name}}</ion-col>
+          <ion-col class="data-col" size="4" style="float:right;font-weight:bold;color:black;">{{h.date}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+  </ion-card>
+</ion-content>

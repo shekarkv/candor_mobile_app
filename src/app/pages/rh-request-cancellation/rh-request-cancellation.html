@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>RH Request Cancellation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <h4 class="msg" *ngIf="this.cancel_list == '' || this.cancel_list == 'undefined' || this.cancel_list == undefined ">
+    {{loading_msg}}
+  </h4>
+
+  <ion-list>
+    <ion-item *ngFor="let c of cancel_list;">
+      <ion-avatar slot="start">
+        <img src="{{c.employee_image}}">
+      </ion-avatar>
+     
+      <h2><b style="color:darkgoldenrod;">{{c.emp_code}}</b></h2>
+      <ion-label style="margin-left:5%">
+      <p style="color:maroon;"><b>{{c.emp_name}}</b></p>
+      <p style="color:darkslategray;"><b>{{c.holiday_name}}</b></p>
+    </ion-label>
+
+    <ion-button (click)="cancelRHRequest(c)" color="danger"> <b style="float:right;margin-top:8%;margin-right:2%; ">Cancel</b>
+    </ion-button>
+ 
+    </ion-item>
+  </ion-list>
+
+</ion-content>

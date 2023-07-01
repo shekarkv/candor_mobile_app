@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary"> 
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Leave Balance</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item lines="none">
+      <ion-label style="color:navy;font-weight:bold;">Please Select Month & Year</ion-label>
+    </ion-item>
+    <ion-item lines="none" style="padding-right:2%;">
+      <!-- <ion-datetime displayFormat="YYYY - MMM" style="padding-left:3% !important;width:100%;" [(ngModel)]="today"
+        (ngModelChange)="changeLeaveData()"></ion-datetime> -->
+        <ion-input fill="outline" style="background-color:#eeeeef;" value="{{ today | date: 'YYYY - MMM' }}"  id="today"  class="ion-text-center"></ion-input>
+        <ion-popover trigger="today" show-backdrop="false">
+          <ng-template> 
+            <ion-datetime
+              [showDefaultButtons]="true" 
+              presentation="month-year"
+              [(ngModel)]="today" 
+              (ionChange)="changeLeaveData();"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+    </ion-item>
+
+  </ion-list>
+
+  <h4 class="msg" *ngIf="this.leave_list == '' || this.leave_list == 'undefined' || this.leave_list == undefined ">
+    {{loading_msg}}
+  </h4>
+
+  <ion-card *ngFor="let l of leave_list" class="header">
+
+    <ion-card-header style="padding:0px;">
+      <ion-label style="color:darkcyan; padding-left:2%;font-weight:bolder;">{{l.emp_leave_short_name}}</ion-label>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-row>
+        <ion-col size="6">Opening Balance</ion-col>
+        <ion-col size="6" style="text-align:right;font-weight:bolder;">{{l.opening_balance}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">Total Leave Taken</ion-col>
+        <ion-col size="6" style="text-align:right;font-weight:bolder;">{{l.total_leave_taken}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">Closing Balance</ion-col>
+        <ion-col size="6" style="text-align:right;font-weight:bolder;">{{l.closing_balance}}</ion-col>
+      </ion-row>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

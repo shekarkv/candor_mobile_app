@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Approve H W Permit</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="viewHwEmployees()">
+        <ion-icon name="contacts" icon-start style='float:right;'></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+
+    <ion-item no-lines>
+      <ion-label stacked><b>Requesting Employee</b></ion-label>
+      <ion-input type="text" [(ngModel)]="req_emp" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked style="color:#0086d0;"><b>Date of Work</b></ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" style="padding-left:3% !important;" [(ngModel)]="date_of_work">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked><b>Approved Remarks</b></ion-label>
+      <ion-input type="text" [(ngModel)]="remarks" required></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked><b>Reason</b></ion-label>
+      <ion-textarea [(ngModel)]="reason" text-wrap></ion-textarea>
+    </ion-item>
+
+    <ion-row style="padding:2% 0 5% 5%;">
+      <ion-col size="6">
+        <ion-button (click)="submit('Approved')"  block color="success" style="float:right;"
+          small>Approved</ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="submit('Rejected')" block color="danger" style="float:right;"
+          small>Rejected</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+</ion-content>

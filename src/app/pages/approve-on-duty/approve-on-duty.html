@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Approve On Duty</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+
+    <ion-item no-lines>
+      <ion-label stacked><b>Name</b></ion-label>
+      <ion-input type="text" [(ngModel)]="name" readonly></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked><b>Travel Type</b></ion-label>
+      <ion-input type="text" [(ngModel)]="travel_type" readonly></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked><b>Visit Place</b></ion-label>
+      <ion-input type="text" [(ngModel)]="visit_place" readonly></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked style="color:#0086d0;"><b>Approve Start Date</b></ion-label>
+      <ion-input type="text" [(ngModel)]="start_date" readonly></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked style="color:#0086d0;"><b>Approve End Date</b></ion-label>
+      <ion-input type="text" [(ngModel)]="end_date" readonly></ion-input>
+    </ion-item>
+
+    <ion-item no-lines style="padding-bottom:15%;">
+      <ion-label stacked><b>Approved Remarks</b></ion-label>
+      <ion-input type="text" [(ngModel)]="remarks" required></ion-input>
+    </ion-item>
+
+    <ion-row padding>
+      <ion-col size="6">
+        <ion-button (click)="submit('Approved')"  block color="success" style="float:right;"
+          small>Approved</ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="submit('Rejected')"   block color="danger" style="float:right;"
+          small>Rejected</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+</ion-content>

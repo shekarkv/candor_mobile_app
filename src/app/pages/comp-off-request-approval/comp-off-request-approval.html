@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>CompOff Request Approval</ion-title>
+  </ion-toolbar> 
+</ion-header>
+
+<ion-content>
+
+  <h4 class="msg"
+    *ngIf="this.applicant_list == '' || this.applicant_list == 'undefined' || this.applicant_list == undefined ">
+    {{loading_msg}}
+  </h4>
+
+  <ion-list *ngFor="let l of applicant_list;">
+    <ion-item (click)="approveCompOffRequest(l)">
+      <ion-avatar item-start>
+        <img src="{{l.employee_image}}">
+      </ion-avatar>
+
+      <h2><b style="color:darkgoldenrod;">{{l.comp_emp_name}}</b></h2>
+      <p style="color:darkslategray;"><b>{{l.holiday_date}}</b></p>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

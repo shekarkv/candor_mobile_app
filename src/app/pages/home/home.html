@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-toggle>
+        <ion-icon size="large" name="menu"></ion-icon>
+      </ion-menu-toggle>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center" >
+
+  <ion-card style="padding-top:5%;">
+    <img src="{{this.login_company_logo}}" class="logo">
+    <ion-item>
+      <ion-label class="company_heading ion-text-wrap">{{this.login_company}}</ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card style="box-shadow:3px lightgrey;">
+
+    <ion-row>
+      <ion-col size="5" style="padding-left:5%;color:darkgoldenrod;"><b>Code</b></ion-col>
+      <ion-col size="1"><b>:</b></ion-col>
+      <ion-col size="5" style="color:maroon;"><b>{{this.login_code}}</b></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="5" style="padding-left:5%;color:darkgoldenrod;"><b>Name</b></ion-col>
+      <ion-col size="1"><b>:</b></ion-col>
+      <ion-col size="5" style="color:maroon;"><b class="ion-text-wrap">{{this.login_name}}</b></ion-col>
+    </ion-row>
+
+  </ion-card>
+
+  <ion-card *ngFor="let l of leave_list" class="header" (click)="viewLeaveDetails()">
+    <ion-row>
+      <ion-col size="11">
+        <p class="leave">{{l.emp_leave_short_name}}</p>
+      </ion-col>
+      <ion-col size="1">
+        <p style="float:right;margin-top:4%;margin-right:6%;font-size:3vh;color:darkcyan;">
+          <ion-icon name="caret-forward-outline" slot="start"></ion-icon>
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="8" style="float:left;padding-right:25%;">Total Leave Taken</ion-col>
+      <ion-col size="4" style="text-align:right;font-weight:bold;padding-right:5%;">{{l.total_leave_taken}}</ion-col>
+    </ion-row>
+    <ion-row style="padding-bottom:2%;">
+      <ion-col size="8" style="float:left;padding-right:28%;">Closing Balance</ion-col>
+      <ion-col size="4" style="text-align:right;font-weight:bold;padding-right:5%;">{{l.closing_balance}}</ion-col>
+    </ion-row>
+
+  </ion-card>
+
+
+</ion-content> 

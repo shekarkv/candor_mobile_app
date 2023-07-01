@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>On Duty Request</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-content>
+
+    <ion-item lines="none">
+      <ion-label position="stacked" color="primary">
+        <b>Employee</b>
+      </ion-label>
+      <ion-select style="padding-left:3% !important;" [(ngModel)]="employee">
+        <ion-select-option *ngFor="let e of emp_list" [value]="e.internal_code">{{e.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none"> 
+      <ion-label position="stacked" color="primary">
+        <b>Travel Type</b>
+      </ion-label>
+      <ion-select [(ngModel)]="travel_type" placeholder="Select" style="padding-left:3% !important;">
+        <ion-select-option value="Local Visit">Local Visit</ion-select-option>
+        <ion-select-option value="Domestic">Domestic</ion-select-option>
+        <ion-select-option value="International">International</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none" >
+      <ion-label position="stacked" color="primary">
+        <b>Visit Place</b>
+      </ion-label>
+      <ion-input class="custom-input" [(ngModel)]="visit_place" type="text"></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col size="6" style="padding-left:5%;">
+        <ion-label position="stacked" style="color:#0086d0;font-size:0.8rem;">
+          <b>Travel Start Date</b>
+        </ion-label>
+        <!-- <ion-datetime displayFormat="DD/MM/YYYY" style="padding-left:3% !important;" [(ngModel)]="travel_start_date">
+        </ion-datetime> -->
+        <ion-input fill="outline" style="background-color:#eeeeef;" value="{{ travel_start_date | date: 'dd/MM/YYYY' }}"  id="travel_start_date"  class="ion-text-center"></ion-input>
+        <ion-popover trigger="travel_start_date" show-backdrop="false">
+          <ng-template> 
+            <ion-datetime
+              [showDefaultButtons]="true" 
+              presentation="date-month-year"
+              [(ngModel)]="travel_start_date" 
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </ion-col>
+
+      <ion-col size="6" style="padding-left:5%;">
+        <ion-label position="stacked" style="color:#0086d0;font-size:0.8rem;">
+          <b>Travel End Date</b>
+        </ion-label>
+        <!-- <ion-datetime displayFormat="DD/MM/YYYY" style="padding-left:3% !important;" [(ngModel)]="travel_end_date">
+        </ion-datetime> -->
+        <ion-input fill="outline" style="background-color:#eeeeef;" value="{{ travel_end_date | date: 'dd/MM/YYYY' }}"  id="travel_end_date"  class="ion-text-center"></ion-input>
+        <ion-popover trigger="travel_end_date" show-backdrop="false">
+          <ng-template> 
+            <ion-datetime
+              [showDefaultButtons]="true" 
+              presentation="date-month-year"
+              [(ngModel)]="travel_end_date" 
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </ion-col>
+    </ion-row>
+
+    <!-- <ion-item lines="none">
+      <ion-label stacked>
+        <b>Reason</b>
+      </ion-label>
+      <ion-textarea [(ngModel)]="reason" fill="outline" text-wrap></ion-textarea>
+    </ion-item> -->
+
+    <ion-item lines="none" >
+      <ion-label position="stacked" color="primary">
+        <b>Reason</b>
+      </ion-label>
+      <ion-textarea class="custom-input" [(ngModel)]="reason" type="text"></ion-textarea>
+    </ion-item>
+
+    <ion-row >
+      <ion-col size="6">
+        <ion-button (click)="apply()" expand="block" color="success" size="small"><ion-icon name="paper-plane" >&nbsp;&nbsp;</ion-icon><b>Apply</b></ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="cancel()" expand="block" color="danger" size="small"><ion-icon name="close" >&nbsp;&nbsp;</ion-icon><b>Cancel</b></ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>RH Request</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item lines="none">
+    <ion-label position="stacked" color="primary">
+      <b>Employee</b>
+    </ion-label>
+    <ion-select style="padding-left:3% !important;" [(ngModel)]="employee">
+      <ion-select-option *ngFor="let e of emp_list" [value]="e.internal_code">{{e.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label position="stacked" color="primary">
+      <b>Restricted Holiday</b>
+    </ion-label>
+    <ion-select style="padding-left:3% !important;" [(ngModel)]="rh">
+      <ion-select-option *ngFor="let rh of rh_list" [value]="rh.internal_code">{{rh.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label position="stacked" color="primary">
+      <b>Reason</b>
+    </ion-label>
+    <ion-textarea class="custom-input" [(ngModel)]="reason"  ></ion-textarea>
+  </ion-item>
+ 
+
+</ion-content>
+
+<ion-footer>
+  <ion-row padding>
+    <ion-col size="8">
+      <ion-button (click)="apply()"  expand="block" color="success" size="small"><ion-icon name="paper-plane" >&nbsp;&nbsp;</ion-icon><b>Apply</b></ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button (click)="cancel()" expand="block" color="danger" size="small"><ion-icon name="close" >&nbsp;&nbsp;</ion-icon><b>Cancel</b></ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

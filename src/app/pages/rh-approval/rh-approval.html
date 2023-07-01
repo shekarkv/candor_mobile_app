@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>RH Request Approvals</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <h4 class="msg"
+    *ngIf="this.applicants_list == '' || this.applicants_list == 'undefined' || this.applicants_list == undefined ">
+    {{loading_msg}}
+  </h4>
+
+  <ion-list>
+    <ion-item *ngFor="let a of applicants_list;" (click)="approveRHRequest(a)">
+      <ion-avatar slot="start">
+        <img src="{{a.employee_image}}">
+      </ion-avatar>
+      <h2><b style="color:darkgoldenrod;">{{a.emp_code}}</b></h2>
+     <ion-label>
+      <h2><b style="color:maroon;margin-left:5%">{{a.emp_name}}</b></h2>
+     </ion-label>
+     <ion-label>
+      <h4><b style="color:darkslategray;"><i>{{a.holiday_name}}</i></b></h4>
+     </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

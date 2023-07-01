@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "470604602049",
+    "firebase_url": "https://candor-e6eb0.firebaseio.com",
+    "project_id": "candor-e6eb0",
+    "storage_bucket": "candor-e6eb0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470604602049:android:d2da07f450d05c88",
+        "android_client_info": {
+          "package_name": "com.tarka.ecandor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470604602049-ev0n3s02seuks6dnoh8rfnjeqfitl52i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCT-sddoNDS13VVmqeYgw71ODMxY25S5UU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470604602049-ev0n3s02seuks6dnoh8rfnjeqfitl52i.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "470604602049-5orkap1q4fv665930pm9e3ta5175k4o6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tarka.ecandor"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

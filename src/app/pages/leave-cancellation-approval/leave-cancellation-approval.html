@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Leave Request Approval</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <h4 class="msg"
+    *ngIf="this.cancel_list == '' || this.cancel_list == 'undefined' || this.cancel_list == undefined ">
+    {{loading_msg}}
+  </h4>
+
+  <ion-list>
+    <ion-item  *ngFor="let c of cancel_list;" (click)="approveLeaveCancellation(c)">
+ 
+      <ion-avatar slot="start">
+        <img src="{{c.employee_image}}">
+      </ion-avatar>
+  
+      <ion-label>
+        <p style="color:darkgoldenrod;"><b>{{c.leave_employee_name}}</b></p>
+        <p style="color:maroon;"><b>{{c.leave_name}}</b></p>
+        <p style="color:darkslategray;"><b>{{c.approved_status}}</b></p>
+       </ion-label>
+       
+       <h4><b style="float:right;margin-top:8%;margin-right:2%;color:navy;">Approve</b>
+       </h4>
+
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

@@ -1,0 +1,151 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div style="padding-left:40%;padding-top:5%;width:100%">
+    <img class="roundprofAvatar" (click)="ViewProfilePhoto(this.employee_image)" src="{{this.employee_image}}">
+    <ion-button shape="round" fill="clear" slot="icon-only" (click)="uploadProPic()"  class="camera_btn">
+      <i class="fas fa-camera"></i>
+    </ion-button>
+  </div>
+
+  <div padding>
+    <ion-segment [(ngModel)]="emp_info">
+      <ion-segment-button value="Personal" style="color:#0080c2;">
+        <ion-icon name="person-circle-outline" icon-start></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Professional" style="color:#0080c2;">
+        <ion-icon name="briefcase" icon-start></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="emp_info">
+
+    <div *ngSwitchCase="'Personal'" style="padding-right:3%;padding-left:2%;">
+
+      <ion-item lines="none">
+        <ion-label color="primary" position="stacked">
+          <b>Name</b>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="name" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label color="primary" position="stacked">
+          <b>Employee ID</b>
+        </ion-label>
+        <ion-input type="number" [(ngModel)]="emp_id" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label color="primary" position="stacked">
+          <b>Designation</b>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="designation" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label color="primary" position="stacked">
+          <b>Department</b>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="dept" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label color="primary" position="stacked">
+          <b>Date Of Joining</b>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="doj" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label color="primary" position="stacked">
+          <b>Date Of Birth</b>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="dob" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label color="primary" position="stacked">
+          <b>Gender</b>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="gender" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label color="primary" position="stacked">
+          <b>Mobile Number</b>
+        </ion-label>
+        <ion-input type="number" [(ngModel)]="mobile_no" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label color="primary" position="stacked">
+          <b>Father's Name</b>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="father_name" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label color="primary" position="stacked">
+          <b>Email</b>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="email" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" style="padding-bottom:15%;">
+        <ion-label color="primary" position="stacked">
+          <b>Address</b>
+        </ion-label>
+        <ion-input [(ngModel)]="address" text-wrap [readonly]="true"></ion-input>
+      </ion-item>
+
+    </div>
+
+    <div *ngSwitchCase="'Professional'" style="padding-right:4%;padding-left:2%;">
+      <ion-item lines="none">
+        <ion-label color="primary" position="stacked">
+          <b>Bank</b>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="bank" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label color="primary" position="stacked">
+          <b>Bank Account Number</b>
+        </ion-label>
+        <ion-input type="number" [(ngModel)]="bank_acc_no" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label color="primary" position="stacked">
+          <b>PAN Number</b>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="pan_no" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label color="primary" position="stacked">
+          <b>PF Number</b>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="pf_no" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" style="padding-bottom:15%;">
+        <ion-label color="primary" position="stacked">
+          <b>PF UAN</b>
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="pf_uan" [readonly]="true"></ion-input>
+      </ion-item>
+    </div>
+  </div>
+
+</ion-content>

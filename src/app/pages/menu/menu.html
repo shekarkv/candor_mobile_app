@@ -1,0 +1,59 @@
+<ion-menu contentId="content" class="ion-text-center">
+  <ion-header class="box">
+    <ion-toolbar style='text-align:left;' color="primary" >
+      <ion-menu-toggle>
+        <ion-icon  *ngIf="this.login_user_type == 'Employee' || this.login_user_type == 'employee'" style="color:white;float: right; padding: 6px 6px 0 0;font-size: 4vh;" name="settings" (click)="openMyProfilePage()"></ion-icon>
+      </ion-menu-toggle>
+      <div style="padding-left:40%;padding-top:5%;width:100%">
+        <img class="roundprofAvatar" src="{{this.login_pic}}">
+      </div>
+      <h2 style="color:white;text-align:center;" class="ion-text-wrap">{{this.login_name_code}}</h2>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+
+    <ion-list>
+      <ion-menu-toggle>
+        <ion-item *ngFor="let p of PageInterface" (click)="openPage(p)" small>
+          <ion-icon slot="start" [name]="p.icon" style='font-size:25px;color:black;'></ion-icon>
+          <p style="color:black;"><b>{{ p.title }}</b></p>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-item lines="none" menuClose (click)="logout()" small>
+        <ion-icon slot="start" name="power" style='font-size:23px;color:black;'></ion-icon>
+        <p style="color:black;"><b>Logout</b></p>
+      </ion-item> 
+    </ion-list>
+
+  </ion-content>
+
+  <ion-footer style="background-color:#F8F8F8; height:70px;">
+    
+    <ion-item style="background-color:#F8F8F8;" lines="none">
+      <ion-row>
+          <ion-col size="4">
+            <img class="candorLogo" src="assets/imgs/Candor_logo.png"  >
+          </ion-col>
+          <ion-col size="8" class="ion-no-margin" style="padding-left: 60px;">
+            <!-- <h3 style="text-align:right;font-size:1rem;font-weight:bold;" class="ion-text-wrap">&#169; Candor Business Solutions Pvt Ltd</h3>
+            <p style="text-align:right; font-size:13px;" class="ion-text-wrap">v1.0.11&nbsp;&nbsp;&nbsp; www.ecandor.com</p> -->
+            <!-- <ion-row> -->
+              <!-- <ion-col size="8" style="float:left;padding-right:25%;">Total Leave Taken</ion-col> -->
+              <p style="text-align:right; font-size:7px;font-weight:bold;" >&#169; Candor Business Solutions Pvt Ltd</p> 
+            <!-- </ion-row> -->
+            <!-- <ion-row style="padding-bottom:2%;"> -->
+              <!-- <ion-col size="8" style="float:left;padding-right:28%;">Closing Balance</ion-col>  -->
+              <p style="text-align:right; font-size:7px;" class="ion-text-wrap">v{{this.versionName}}&nbsp;&nbsp;&nbsp; www.ecandor.com</p>
+            <!-- </ion-row> -->
+          </ion-col>
+      </ion-row> 
+    </ion-item>
+  </ion-footer>
+
+</ion-menu>
+
+<!-- main navigation -->
+<!-- <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav> -->
+
+<ion-router-outlet id="content" main></ion-router-outlet>

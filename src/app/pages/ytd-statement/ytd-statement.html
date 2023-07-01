@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Year To Date Statement</ion-title>
+    <ion-buttons slot="end">
+      <ion-button slot="icon-only" (click)="downloadYtd()">
+        <!-- <ion-avatar slot="start"> -->
+          <!-- <img src="assets/imgs/pdf_icon.png" width="35" height="30"> -->
+          <i class="fas fa-file-pdf" style="font-size:30px"></i>
+        <!-- </ion-avatar> -->
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-item lines="none" style="padding-top:4%;">
+    <ion-label style="color:#006666;padding-left:0px;"><b>Please Select Financial Year</b></ion-label>
+    <ion-select [(ngModel)]="fyear" (ionChange)="getYtdStatement()">
+      <ion-select-option *ngFor="let year of yearList" [value]="year.fin_int_code">{{year.financial_year}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-row style="padding-left:2%;">
+    <ion-col size="4"><b>Code</b></ion-col>
+    <ion-col size="1"><b>:</b></ion-col>
+    <ion-col size="4"><b>{{this.login_password}}</b></ion-col>
+  </ion-row>
+  <ion-row style="padding-left:2%;">
+    <ion-col size="4"><b>Name</b></ion-col>
+    <ion-col size="1"><b>:</b></ion-col>
+    <ion-col size="6"><b text-wrap>{{this.login_name}}</b></ion-col>
+  </ion-row>
+
+  <h4 class="msg" *ngIf="this.ytd_list == '' || this.ytd_list == 'undefined' || this.ytd_list == undefined ">
+    {{loading_msg}}
+  </h4>
+
+  <ion-card *ngFor="let y of ytd_list" (click)="redirectToMonthlyPayslip(y.month,y.year)" style="border-top: 2px solid #7c560e;box-shadow: 2px 2px lightgrey;">
+    <ion-card-header style="padding:0px;">
+      <ion-label style="color:#7c560e; padding-left:2%;font-weight:bolder;">{{y.month}}{{' '}}{{y.year}}</ion-label>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-row>
+        <ion-col size="6">Total Earnings</ion-col>
+        <ion-col size="6" style="text-align:right;font-weight:bolder;">{{y.total_earning}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">Total Deductions</ion-col>
+        <ion-col size="6" style="text-align:right;font-weight:bolder;">{{y.total_deduction}}</ion-col>
+      </ion-row>
+      <ion-row style="color:#008000;">
+        <ion-col size="6" style="font-weight:bolder;">Net Pay</ion-col>
+        <ion-col size="6" style="text-align:right;font-weight:bolder;">{{y.net_pay}}</ion-col>
+      </ion-row>
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,28 @@
+// page-login {
+    // .logoAvatar
+    // {
+    //     width: 130px;
+    //     height: 40px;
+    // }
+    // ion-input,ion-select{
+    //     border: 0px;
+    //     color:black;
+    // }
+    // ion-input:focus-within,ion-select:focus-within{
+    //     border: 0px;
+    // }
+    .box{
+        --background: linear-gradient(#fff, #0086d0) !important; 
+        --background-size:cover;
+    }
+    .itemfield{
+        border: 0px;
+        color:black;
+        --background: rgba(255, 255, 255, 0) !important
+    }
+
+    // ion-button {
+    //     background: var(--ion-color-app);
+    //     color: var(--ion-color-app-contrast);
+    //   }
+// }

@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Reimbursement Claims</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item no-lines>
+      <ion-label style="color:navy;font-weight:bold;">Please Select Month & Year</ion-label>
+    </ion-item>
+    <!-- <ion-item no-lines style="padding-right:2%;">
+      <ion-datetime displayFormat="YYYY - MMM" style="padding-left:3% !important;width:100%;" [(ngModel)]="today"
+        (ngModelChange)="changeReimbursementData()"></ion-datetime>
+    </ion-item> -->
+      <ion-input fill="outline" style="background-color:#eeeeef;" value="{{ today | date: 'MMMM-YYYY' }}"  id="today"  class="ion-text-center"> 
+      </ion-input>
+      <ion-popover trigger="today" show-backdrop="false">
+        <ng-template> 
+          <ion-datetime
+            [showDefaultButtons]="true" 
+            presentation="month-year"
+            [(ngModel)]="today"
+            (ionChange)="changeReimbursementData();"
+          ></ion-datetime>
+        </ng-template>
+      </ion-popover>
+  </ion-list>
+
+  <ion-list *ngFor="let rd of data_arr" (click)="viewReimbursementData(rd)">
+    <ion-item>
+
+      <p style="float:right;margin-top:7%;margin-right:3%;font-size:4vh;">
+        <ion-icon name="arrow-dropright" item-start></ion-icon>
+      </p>
+      <p style="color:darkgoldenrod;font-size:1.7rem;"><b>{{rd.component}}</b></p>
+      <ion-row>
+        <ion-col size="6">
+          <p style="color:maroon;font-size:1.5rem;"><b>Max Limit</b></p>
+        </ion-col>
+        <ion-col size="1">:</ion-col>
+        <ion-col size="4">
+          <p style="font-size:1.5rem;"><b>{{rd.max_limit}}</b></p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <p style="color:maroon;font-size:1.5rem;"><b>Bill Submitted</b></p>
+        </ion-col>
+        <ion-col size="1">:</ion-col>
+        <ion-col size="4">
+          <p style="font-size:1.5rem;"><b>{{rd.bill_submitted}}</b></p>
+        </ion-col>
+      </ion-row>
+
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

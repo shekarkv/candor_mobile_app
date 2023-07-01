@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>IT Computation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-item lines="none" style="padding-top:4%;">
+    <ion-label style="color:#006666;padding-left:0px;"><b>Please Select Financial Year</b></ion-label>
+    <ion-select [(ngModel)]="fin_year" (ionChange)="getEmpITComputation()">
+      <ion-select-option *ngFor="let year of yearList" [value]="year.fin_int_code">{{year.financial_year}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <h4 class="msg" *ngIf="this.it_details == '' || this.it_details == 'undefined' || this.it_details == undefined ">
+    {{loading_msg}}
+  </h4>
+
+  <ion-card *ngFor="let it of it_details" style="border-top: 2px solid #0086d0;box-shadow: 2px 2px lightgrey;">
+
+    <ion-card-header class="card-header">
+      <ion-row>
+        <ion-col size="6">
+          <h2 style="color:#3573a2;font-weight:bolder;">{{it.month_name}}{{' '}}{{it.year}}</h2>
+        </ion-col>
+        <ion-col size="6">
+          <ion-icon name="download" size="large" (click)="downloadEmpItComputation(it.month,it.year)" class="ion-float-right"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+
+    <ion-row>
+      <ion-col size="6" style="text-align:left;font-weight:bolder;color:navy;">Component</ion-col>
+      <ion-col size="6" style="text-align:right;font-weight:bolder;color:navy;">Amount</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" style="text-align:left;">{{it.component_name}}</ion-col>
+      <ion-col size="6" style="text-align:right;font-weight:bolder;">{{it.amount}}</ion-col>
+    </ion-row>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <p style="text-align:center;" class="ion-text-wrap">Note: Please click on download icon for detailed view</p>
+</ion-footer>

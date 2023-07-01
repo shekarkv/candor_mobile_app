@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { NotificationsService } from './services/notifications-service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,9 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(
+    public pushNotifications: NotificationsService
+  ) {
+    this.pushNotifications.initPush();
+  }
 }

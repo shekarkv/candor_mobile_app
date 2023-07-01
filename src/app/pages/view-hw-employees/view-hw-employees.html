@@ -1,0 +1,27 @@
+<ion-content>
+
+  <ion-icon icon-start icon-only (click)="dismissView()" name="close"
+    style="float:right;margin: 3% 2% 0 0;font-size:4vh;"></ion-icon>
+ 
+  <div>
+
+    <ion-row style="text-align:center;margin:10% 8% 0 7%;">
+      <ion-col size="6" style="color:darkgrey;"><b>Employee Code</b></ion-col>
+      <ion-col size="6" style="color:darkgray;"><b>Employee Name</b></ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let hw of hw_list" style="margin:5% 6% 5% 2%;text-align:center">
+
+      <ion-col size="6">
+        <b class="ion-text-wrap">{{hw.emp_code}}</b>
+      </ion-col>
+
+      <ion-col size="6">
+        <b class="ion-text-wrap">{{hw.emp_name}}</b>
+      </ion-col>
+
+    </ion-row>
+
+  </div>
+
+</ion-content>

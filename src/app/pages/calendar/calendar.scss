@@ -1,0 +1,171 @@
+// page-calendar {
+    [size="1"] {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 8.33333%;
+        -ms-flex: 0 0 8.33333%;
+        flex: 0 0 14.285714285714286%;
+        width: 14.285714285714286%;
+        max-width: 14.285714285714286%; 
+    }
+    ion-grid {
+        --ion-grid-columns: 7;
+        }               
+    .col {
+            text-align: center;
+            padding: 5px;
+    }
+    .last-month, .next-month {
+            color: #999999;
+            font-size: 90%;
+    }
+    .currentDate, .otherDate {
+        padding-right: 11%;
+        // padding-left: 11%;
+        padding-top: 1%;
+        padding-bottom: 3%;
+    }
+    .currentDate {
+            font-weight: bold;
+            background-color: #2d3b51;
+            color: white;
+            border-radius: 10%;
+    }
+    .otherDate {
+            font-weight: bold;
+            background-color: white;
+            color: black;
+            border-radius: 10%;
+    }
+    .currentLeave {
+            padding-right: 11%;
+        //     padding-left: 11%;
+            padding-top: 1%;
+            padding-bottom: 3%;
+            font-weight: bold;
+            background-color: #e69900;
+            color: black;
+            border-radius: 10%;
+    }
+    .currentGh {
+            padding-right: 11%;
+        //     padding-left: 11%;
+            padding-top: 1%;
+            padding-bottom: 3%;
+            font-weight: bold;
+            background-color: #990073;
+            color: white;
+            border-radius: 10%; 
+    }
+    .currentWh {
+            padding-right: 11%;
+        //     padding-left: 11%;
+            padding-top: 1%;
+            padding-bottom: 3%;
+            font-weight: bold;
+            background-color: #006080;
+            color: white;
+            border-radius: 10%; 
+    }
+    .otherLeave {
+            padding-right: 11%;
+        //     padding-left: 11%;
+            padding-top: 1%;
+            padding-bottom: 3%;
+            background-color: #e69900;
+            color: black;
+            font-weight:bold;
+            border-radius: 10%; 
+    }
+    .otherGh {
+            padding-right: 11%;
+        //     padding-left: 11%;
+            padding-top: 1%;
+            padding-bottom: 3%;
+            background-color: #990073;
+            color: white;
+            font-weight:bold;
+            border-radius: 10%; 
+    }
+    .otherWh {
+        //     padding-right: 15%;
+        //     padding-left: 15%;
+            padding-top: 1%;
+            padding-bottom: 3%;
+            background-color: #006080;
+            color:white;
+            font-weight:bold;
+            border-radius: 10%; 
+    }
+    .calendar-header {
+            background-color: #476b6b;
+            color: white;
+            padding-bottom: 5%;
+    }
+    .event-bullet {
+            margin: 2px auto;
+            height: 5px;
+            width: 5px;
+            background-color: #c2d6d6;
+            border-radius: 30px;
+    }
+    .selected-date {
+            width: 20px;
+            height: 2px;
+            background-color: white;
+    }
+    .unselected-date {
+            border: none;
+    }
+    .calendar-body 
+    {
+            .grid {
+                    padding: 0;
+            }
+            .col:last-child {
+                    border-right: none;
+            }
+            .calendar-weekday, .calendar-date {
+                    text-align: center;
+                    margin: 0;
+            }
+            .calendar-weekday {
+                    font-weight: bold;
+                    border-bottom: solid 1px #c2d6d6;
+                    background-color: #c2d6d6;
+            }
+            .calendar-date {
+                    border-top: solid 1px #c2d6d6;
+                    border-bottom: solid 1px #c2d6d6;
+            }
+    }
+    legend {
+            background-color: #476b6b;
+            color: #fff;
+            font-weight:bold;
+            padding: 3px 6px;
+    }
+    .leave {
+            height: 12px;
+            width: 12px;
+            background-color: #e69900;
+            border-radius: 10%;
+            border: 1px solid black;
+            display: inline-block;
+    }
+    .gh {
+            height: 12px;
+            width: 12px;
+            background-color:#990073;
+            border-radius: 10%;
+            border: 1px solid black;
+            display: inline-block;
+    }
+    .wh {
+            height: 12px;
+            width: 12px;
+            background-color: #006080;
+            border-radius: 10%;
+            border: 1px solid black;
+            display: inline-block;
+    }
+// }

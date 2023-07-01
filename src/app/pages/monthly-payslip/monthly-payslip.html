@@ -1,0 +1,159 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Monthly Payslip</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="btn" slot="icon-only" (click)="downloadPdf()">
+        <!-- <ion-avatar > -->
+          <!-- <img src="assets/imgs/pdf_icon.png" width="35" height="30" > -->
+          <i class="fas fa-file-pdf" style="font-size:30px"></i>
+        <!-- </ion-avatar> -->
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list>
+    <ion-item lines="none">
+      <ion-label style="color:navy;font-weight:bold;">Please Select Month & Year</ion-label>
+    </ion-item>
+    <!-- <ion-item lines="none" style="padding-right:2%;"> -->
+      <!-- <ion-datetime displayFormat="YYYY - MMM" style="padding-left:3% !important;width:100%;" [(ngModel)]="today"
+        (ngModelChange)="changeEmpData()"></ion-datetime> -->
+    <!-- </ion-item> -->
+      <ion-input fill="outline" style="background-color:#eeeeef;" value="{{ today | date: 'MMMM-YYYY' }}"  id="today"  class="ion-text-center">
+        <!-- <ion-icon slot="end" size="medium" style="color:black" name="calendar"></ion-icon>  -->
+      </ion-input>
+      <ion-popover trigger="today" show-backdrop="false">
+        <ng-template> 
+          <ion-datetime
+            [showDefaultButtons]="true" 
+            presentation="month-year"
+            [(ngModel)]="today"
+            (ionChange)="changeEmpData();"
+          ></ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-list>
+
+  <ion-label style="text-align:center;color:navy;font-size:2.5vh;padding-left: 4%;"><b class="ion-text-wrap">Payslip for the Month of
+      {{this.heading}}</b></ion-label>
+
+  <ion-card style="border-top:2px solid darkgray;box-shadow:3px lightgrey;">
+
+    <ion-row>
+      <ion-col size="5" style="padding-left:5%"><b>Code</b></ion-col>
+      <ion-col size="1"><b>:</b></ion-col>
+      <ion-col size="5"><b>{{this.code}}</b></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="5" style="padding-left:5%"><b>Name</b></ion-col>
+      <ion-col size="1"><b>:</b></ion-col>
+      <ion-col size="5"><b class="ion-text-wrap">{{this.name}}</b></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="5" style="padding-left:5%"><b>Date of Joining</b></ion-col>
+      <ion-col size="1"><b>:</b></ion-col>
+      <ion-col size="5"><b>{{this.doj}}</b></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="5" style="padding-left:5%"><b>Designation</b></ion-col>
+      <ion-col size="1"><b>:</b></ion-col>
+      <ion-col size="6"><b class="ion-text-wrap">{{this.designation}}</b></ion-col>
+    </ion-row>
+
+  </ion-card>
+
+  <h4 class="msg" *ngIf="this.earnings_list == '' || this.deductions_list == '' || this.net_pay == '' ">
+    Salary is not generated
+  </h4>
+
+  <!-- earnings -->
+  <ion-card *ngIf="this.earnings_list != ''" (click)="toggleEarningGroup(i)"
+    [ngClass]="{active: isEarningGroupShown(i)}">
+
+    <ion-card-header style="padding:5px 5px 0px 6px;">
+      <h4 class="heading">EARNINGS
+        <ion-icon color="app" class="ion-float-right" [name]="isEarningGroupShown(i) ? 'caret-down-outline' : 'caret-forward-outline'"
+          large></ion-icon>
+        <h4 style="color:navy; float:right;font-weight:bolder; margin: -2px 0;font-size:0.9rem;">
+          {{this.total_earning}}&nbsp;&nbsp;</h4>
+      </h4>
+    </ion-card-header>
+
+    <div *ngIf="isEarningGroupShown(i)">
+      <ion-item>
+        <ion-grid>
+          <ion-row style="background-color:#e0effb;">
+            <ion-col size="8" style="text-align:left;font-weight:bolder;color:#2e6e9e;" class="ion-text-wrap">Component</ion-col>
+            <ion-col size="4" style="text-align:right;font-weight:bolder;color:#2e6e9e;">Amount (Rs.)</ion-col>
+          </ion-row>
+
+          <ion-row *ngFor="let e of earnings_list;let i = index;" [ngClass]="(i % 2 == 0) ? 'odd' : 'even' ">
+            <ion-col size="8" style="text-align:left;" class="ion-text-wrap">{{e.component_name}}</ion-col>
+            <ion-col size="4" style="text-align:right;font-weight:bolder;">{{e.total}}</ion-col>
+          </ion-row>
+
+          <ion-row style="color:navy;">
+            <ion-col size="6" style="color:navy;font-weight:bolder;">Total Earnings</ion-col>
+            <ion-col size="6" style="text-align:right;font-weight:bolder;">{{total_earning}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+  </ion-card>
+
+  <!-- deductions -->
+  <ion-card *ngIf="this.deductions_list != ''" (click)="toggleDeductionGroup(j)"
+    [ngClass]="{active: isDeductionGroupShown(j)}">
+
+    <ion-card-header style="padding:5px 5px 0px 6px;" >
+      <h4 style="color:crimson !important;" class="heading">DEDUCTIONS
+        <ion-icon color="danger" class="ion-float-right" [name]="isDeductionGroupShown(j) ? 'caret-down-outline' : 'caret-forward-outline'"
+          large></ion-icon>
+        <h4 style="color:crimson; float:right;font-weight:bolder; margin: -2px 0;font-size:0.9rem;">
+          {{this.total_deduction}}&nbsp;&nbsp;</h4>
+      </h4>
+    </ion-card-header>
+
+    <div *ngIf="isDeductionGroupShown(j)">
+      <ion-item>
+        <ion-grid>
+          <ion-row style="background-color:#e0effb;">
+            <ion-col size="8" style="text-align:left;font-weight:bolder;color:#2e6e9e;" class="ion-text-wrap">Component</ion-col>
+            <ion-col size="4" style="text-align:right;font-weight:bolder;color:#2e6e9e;">Amount (Rs.)</ion-col>
+          </ion-row>
+
+          <ion-row *ngFor="let d of deductions_list;let j = index;" [ngClass]="(j % 2 == 0) ? 'odd' : 'even'">
+            <ion-col size="8" style="text-align:left;" class="ion-text-wrap">{{d.component_name}}</ion-col>
+            <ion-col size="4" style="text-align:right;font-weight:bolder;">{{d.total}}</ion-col>
+          </ion-row>
+
+          <ion-row style="color:crimson;">
+            <ion-col size="6" style="color:crimson;font-weight:bolder;">Total Deductions</ion-col>
+            <ion-col size="6" style="text-align:right;font-weight:bolder;">{{total_deduction}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+  </ion-card>
+
+  <!-- net pay -->
+  <ion-card *ngIf="this.net_pay_flag != 0 && this.deductions_list != '' && this.earnings_list != '' ">
+    <ion-card-header style="padding:5px 5px 0px 6px;">
+      <ion-row style="color:green;">
+        <ion-col size="8" style="font-weight:bolder;">NET SALARY</ion-col>
+        <ion-col size="4" style="text-align:right;font-weight:bolder;">{{net_pay}}</ion-col>
+      </ion-row>
+    </ion-card-header>
+  </ion-card>
+
+</ion-content>

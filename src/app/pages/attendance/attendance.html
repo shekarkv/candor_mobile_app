@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Attendance</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item (click)="openLeaveApplicationPage()">
+      <ion-icon name="calendar" slot="start" style="margin-bottom:7%;"></ion-icon>
+      <ion-label>Leave Application</ion-label>
+    </ion-item>
+
+    <ion-item (click)="openLeaveBalancePage()">
+      <ion-icon name="timer" slot="start" style="margin-top:5%;margin-bottom:7%;"></ion-icon>
+      <ion-label>Leave Balance</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="this.is_on_duty == true " (click)="openOnDutyRequestPage()">
+      <ion-icon name="briefcase" slot="start" style="margin-top:5%;margin-bottom:7%;"></ion-icon>
+      <ion-label>On Duty Request</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="this.is_rh_req == true " (click)="openRHRequestPage()">
+      <ion-icon name="remove-circle" slot="start" style="margin-top:5%;margin-bottom:7%;"></ion-icon>
+      <ion-label>RH Request</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="this.is_holiday_work_permit == true && this.is_super_wiser == 1 "
+      (click)="openHolidayWorkPermitPage()">
+      <ion-icon name="laptop" slot="start" style="margin-top:5%;margin-bottom:7%;"></ion-icon>
+      <ion-label>Holiday Work Permit</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="this.is_holiday_work_permit == true" (click)="openCompOffRequestPage()">
+      <ion-icon name="stopwatch" slot="start" style="margin-top:5%;margin-bottom:7%;"></ion-icon>
+      <ion-label>CompOff Request</ion-label>
+    </ion-item>
+
+    <ion-item lines="none" (click)="toggleRequestGroup(i)" [ngClass]="{active: isRequestGroupShown(i)}">
+      <ion-icon name="checkmark-circle" slot="start" ></ion-icon>
+      <ion-label>Request Status</ion-label> 
+      <ion-icon slot="end" class="ion-float-right" [name]="isRequestGroupShown(i) ?  'caret-down' : 'caret-forward'" large>
+      </ion-icon>
+    </ion-item>
+    <ion-item lines="none" *ngIf="isRequestGroupShown(i)">
+      <div  style="margin-left:22%;">
+        <p (click)="openLeaveApplicationStatusPage()" style="color:seagreen;"><b>Leave Application Status</b></p>
+        <p *ngIf="this.is_on_duty == true " (click)="openOnDutyRequestStatusPage()" style="margin-top:5%;color:seagreen;"><b>On Duty Request Status</b>
+        </p>
+        <p *ngIf="this.is_rh_req == true" (click)="openRHRequestStatusPage()" style="margin-top:5%;color:seagreen;"><b>RH Request Status</b></p>
+      </div>
+    </ion-item>
+
+    <ion-item lines="none" (click)="toggleCancelGroup(i)" [ngClass]="{active: isCancelGroupShown(i)}">
+      <ion-icon name="close-circle" slot="start" ></ion-icon>
+      <ion-label>Cancel Request</ion-label> 
+      <ion-icon slot="end" class="ion-float-right" [name]="isCancelGroupShown(i) ?  'caret-down' : 'caret-forward'" large>
+      </ion-icon>
+    </ion-item>
+    <ion-item lines="none" *ngIf="isCancelGroupShown(i)">
+      <div  style="margin-left:22%;">
+        <p (click)="openLeaveRequestCancellationPage()" style="color:seagreen;"><b>Cancel Leave Request</b></p>
+        <p *ngIf="this.is_on_duty == true " (click)="openOnDutyCancellationPage()" style="margin-top:5%;color:seagreen;"><b>Cancel On Duty Request</b>
+        </p>
+        <p *ngIf="this.is_rh_req == true" (click)="openRHCancellationPage()" style="margin-top:5%;color:seagreen;"><b>Cancel RH Request</b></p>
+      </div>
+    </ion-item>
+ 
+    <ion-item *ngIf="this.is_super_wiser == 1 " lines="none" (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+      <ion-icon name="thumbs-up" slot="start" ></ion-icon>
+      <ion-label>My Approvals</ion-label> 
+      <ion-icon slot="end" class="ion-float-right" [name]="isGroupShown(i) ?  'caret-down' : 'caret-forward'" large>
+      </ion-icon>
+    </ion-item>
+    <ion-item lines="none" *ngIf="isGroupShown(i)">
+      <div  style="margin-left:22%;">
+        <p *ngIf="this.is_super_wiser == 1 " (click)="openLeaveApplicationApprovalPage()" style="color:seagreen;">
+          <b>Leave Application Approvals</b></p>
+        <p *ngIf="this.is_on_duty == true && this.is_super_wiser == 1" (click)="openOnDutyApprovalPage()"
+          style="margin-top:5%;color:seagreen;"><b>On
+            Duty Approvals</b></p>
+        <p *ngIf="this.is_rh_req == true && this.is_super_wiser == 1" (click)="openRHRequestApprovalPage()"
+          style="margin-top:5%;color:seagreen;"><b>RH
+            Request Approvals</b></p>
+        <p *ngIf="this.is_super_wiser == 1 " (click)="openLeaveCancellationApprovalPage()"
+          style="margin-top:5%;color:seagreen;"><b>Leave Cancel
+            Approvals</b></p>
+        <p *ngIf="this.is_super_wiser == 1 && this.is_on_duty == true" (click)="openOnDutyCancelApprovalPage()"
+          style="margin-top:5%;color:seagreen;"><b>On Duty Cancel Approval</b>
+        </p>
+        <p *ngIf="this.is_super_wiser == 1 && this.is_rh_req == true" (click)="openRHCancelApprovalPage()" style="margin-top:5%;color:seagreen;">
+          <b>RH Cancel approvals</b></p>
+        <p (click)="openHWPermitApprovalPage()"
+          *ngIf="this.login_user_type == 'Admin' || this.login_user_type == 'admin'"
+          style="margin-top:5%;color:seagreen;"><b class="ion-text-wrap">Holiday Work Permit
+            Approvals</b></p>
+        <p *ngIf="this.is_super_wiser == 1  && this.is_holiday_work_permit == true "
+          (click)="openCompOffRequestApprovalPage()" style="margin-top:5%;color:seagreen;"><b>CompOff Request
+            Approvals</b></p>
+      </div>
+    </ion-item>
+
+    <ion-item (click)="openCalendar()" lines="none">
+      <ion-icon name="calendar" slot="start" style="margin-top:5%;margin-bottom:7%;"></ion-icon>
+      <ion-label>Calendar</ion-label>
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

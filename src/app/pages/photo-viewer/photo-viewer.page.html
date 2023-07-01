@@ -1,0 +1,14 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Photo Viewer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div style="text-align: center;width: 100%;" > 
+      <img [src]="img_src" /> 
+  </div>
+</ion-content>

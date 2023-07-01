@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>View Reimbursement Data</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngFor="let r of reim_arr">
+    <ion-item-sliding>
+      <ion-item>
+        <ion-row>
+          <ion-col size="6">
+            <p>Bill No : <b>{{r.bill_no}}</b></p>
+          </ion-col>
+          <ion-col size="6">
+            <p><b style="float:right;color:darkblue;">{{r.bill_date}}</b></p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <p>Bill Amount : <b>{{r.bill_amt}}</b></p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="6">
+            <p><b style="color:navy;">{{r.status}}</b></p>
+          </ion-col>
+        </ion-row>
+
+        <!-- if image  -->
+        <ion-row>
+          <ion-col size="6" (click)="ShowAttachedImage(r.attachment_path)"
+            *ngIf="r.file_ext == 'jpg' || r.file_ext == 'jpeg' || r.file_ext == 'png'">
+            <ion-note style="color:darkcyan;">
+              <ion-icon name="attach" icon-start></ion-icon>
+              {{r.attachment_name}}
+            </ion-note> 
+          </ion-col>
+        </ion-row>
+ 
+        <!-- if file  -->
+        <ion-row>
+          <ion-col size="6" (click)="downloadAttachment(r.attachment_path)"
+            *ngIf="r.file_ext == 'pdf' || r.file_ext == 'ppt' || r.file_ext == 'pptx' || r.file_ext == 'xlsx' || r.file_ext == 'xls'">
+            <ion-note style="color:darkcyan;">
+              <ion-icon name="attach" icon-start></ion-icon>
+              {{r.attachment_name}}
+            </ion-note>
+          </ion-col>
+        </ion-row>
+
+      </ion-item>
+
+      <ion-item-options side="right">
+        <button ion-button icon-only color="red" (click)="deleteRow(r)" style="text-align:center;">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+
+  <ion-fab (click)="add()" right bottom>
+    <button ion-fab color="secondary" mini fab-mini-size:5px>
+      <ion-icon name="add-circle"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

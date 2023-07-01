@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Leave Application</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+
+    <ion-item line="none">
+      <ion-label stacked>
+        <b>Employee</b>
+      </ion-label>
+      <ion-select style="padding-left:3% !important;" [(ngModel)]="employee">
+        <ion-select-option *ngFor="let e of emp_list" [value]="e.internal_code">{{e.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item line="none">
+      <ion-label stacked>
+        <b>Leave Type</b>
+      </ion-label>
+      <ion-select style="padding-left:3% !important;" [(ngModel)]="leave" (ionChange)="displayLeaveBalance($event)">
+        <ion-select-option *ngFor="let l of leave_type" [value]="l.internal_code">{{l.leave_type}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-row> 
+      <ion-col size="6" style="padding-left:5%;">
+        <ion-label style="color:#0086d0;"><b>From Date</b></ion-label>
+
+        <ion-input style="background-color:#eeeeef;min-height: 45px !important; " value="{{ from_date | date: 'dd/MM/YYYY' }}"  id="from_date"  class="ion-text-center"></ion-input>
+        <ion-popover trigger="from_date" show-backdrop="false">
+          <ng-template> 
+            <ion-datetime
+              [showDefaultButtons]="true" 
+              presentation="date-month-year"
+              [(ngModel)]="from_date" 
+              (ionChange)="calculateNoOfDays($event);"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+
+      </ion-col>
+
+
+      <ion-col size="6" style="padding-left:5%;">
+        <ion-label style="color:#0086d0;"><b>From Half</b></ion-label>
+        <ion-select [(ngModel)]="from_half" style="padding-left:3% !important;" (ionChange)="calculateNoOfDays($event)">
+          <ion-select-option [value]="Yes">Yes</ion-select-option>
+          <ion-select-option [value]="No">No</ion-select-option>
+        </ion-select> 
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6" style="padding-left:5%;">
+        <ion-label style="color:#0086d0;"><b>To Date</b></ion-label>
+        <!-- <ion-datetime displayFormat="DD/MM/YYYY" style="padding-left:3% !important;" [(ngModel)]="to_date"
+          (ionChange)="calculateNoOfDays($event)"></ion-datetime> -->
+          <ion-input fill="outline" style="background-color:#eeeeef;min-height: 45px !important; " value="{{ to_date | date: 'dd/MM/YYYY' }}"  id="to_date"  class="ion-text-center"></ion-input>
+          <ion-popover trigger="to_date" show-backdrop="false">
+            <ng-template> 
+              <ion-datetime
+                [showDefaultButtons]="true" 
+                presentation="date-month-year"
+                [(ngModel)]="to_date" 
+                (ionChange)="calculateNoOfDays($event)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-popover>
+
+      </ion-col>
+
+      <ion-col size="6" style="padding-left:5%;">
+        <ion-label style="color:#0086d0;"><b>To Half</b></ion-label>
+        <ion-select [(ngModel)]="to_half" style="padding-left:3% !important;" (ionChange)="calculateNoOfDays($event)">
+          <ion-select-option [value]="Yes">Yes</ion-select-option>
+          <ion-select-option [value]="No">No</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-item line="none">
+      <ion-label stacked><b>Reason</b></ion-label>
+      <ion-textarea [(ngModel)]="reason" class="ion-text-wrap"></ion-textarea>
+    </ion-item>
+
+    <ion-item line="none">
+      <ion-label stacked><b>No Of Days</b></ion-label>
+      <ion-input [(ngModel)]="no_of_days" type="number" readonly></ion-input>
+    </ion-item>
+
+    <ion-item line="none">
+      <ion-label stacked><b>Leave Balance</b></ion-label>
+      <ion-input [(ngModel)]="bal" type="text" readonly></ion-input>
+    </ion-item>
+
+    <ion-row padding>
+      <ion-col size="6">
+        <ion-button (click)="applyLeave()"  expand="block" color="success" size="small"><ion-icon name="paper-plane" >&nbsp;&nbsp;</ion-icon><b>Apply</b></ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="cancel()"  expand="block" color="danger" size="small"><ion-icon name="close" >&nbsp;&nbsp;</ion-icon><b>Cancel</b></ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+</ion-content>

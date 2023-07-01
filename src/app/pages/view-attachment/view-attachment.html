@@ -1,0 +1,45 @@
+<ion-content>
+
+  <ion-icon icon-start icon-only (click)="dismissView()" name="close"
+    style="float:right;margin: 2% 2% 0 0;font-size:4.5vh;"></ion-icon>
+
+  <div>
+
+    <ion-row style="text-align:center;margin:5% 5% 0 5%;">
+
+      <ion-col size="2" style="color:darkgoldenrod;"><b>Sl No</b></ion-col>
+      <ion-col size="6" style="color:darkgoldenrod;"><b>Download</b></ion-col>
+      <ion-col size="4" style="color:darkgoldenrod;"><b>Delete</b></ion-col>
+
+    </ion-row>
+
+    <ion-row *ngFor="let at of attachments;let i = index;" style="margin:5% 5% 5% 5%;text-align:center">
+
+      <ion-col size="2"><b>{{i+1}}</b></ion-col>
+
+      <!-- if file type is an image -->
+      <ion-col size="6" style="color:#0086d0;" (click)="ShowAttachedImage(at.file_path)"
+        *ngIf="at.file_ext == 'jpg' || at.file_ext == 'jpeg' || at.file_ext == 'png'">
+        <b text-wrap><u>{{at.file_name}}</u></b>
+      </ion-col>
+
+      <ion-col size="4" *ngIf="at.file_ext == 'jpg' || at.file_ext == 'jpeg' || at.file_ext == 'png'">
+        <ion-icon name="trash-outline" class="trash" (click)="delete(at.attch_row_id)"></ion-icon>
+      </ion-col>
+
+      <!-- if file is a document -->
+      <ion-col size="6" style="color:#0086d0;" (click)="downloadAttachment(at.file_path)"
+        *ngIf="at.file_ext == 'pdf' || at.file_ext == 'ppt' || at.file_ext == 'pptx' || at.file_ext == 'xlsx' || at.file_ext == 'xls' || at.file_ext == 'doc' || at.file_ext == 'docx' ">
+        <b text-wrap><u>{{at.file_name}}</u></b>
+      </ion-col>
+
+      <ion-col size="4"
+        *ngIf="at.file_ext == 'pdf' || at.file_ext == 'ppt' || at.file_ext == 'pptx' || at.file_ext == 'xlsx' || at.file_ext == 'xls' || at.file_ext == 'doc' || at.file_ext == 'docx'">
+        <ion-icon name="trash-outline" class="trash" (click)="delete(at.attch_row_id)"></ion-icon>
+      </ion-col>
+
+    </ion-row>
+
+  </div>
+
+</ion-content>

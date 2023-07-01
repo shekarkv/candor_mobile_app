@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>On Duty Approval</ion-title>
+  </ion-toolbar>
+</ion-header> 
+
+<ion-content>
+
+  <h4 class="msg"
+    *ngIf="this.applicants_list == '' || this.applicants_list == 'undefined' || this.applicants_list == undefined ">
+    {{loading_msg}}
+  </h4>
+
+  <ion-list>
+    <ion-item *ngFor="let a of applicants_list;" (click)="approveOnDutyRequest(a)">
+      <ion-avatar slot="start">
+        <img src="{{a.employee_image}}">
+      </ion-avatar>
+      <b style="color:darkgoldenrod;">{{a.od_employee_name}}</b>
+      <ion-label style="margin-left:5%">
+        <p style="color:maroon;"><b>{{a.travel_type}}</b></p>
+        <p style="color:darkslategray;"><b>{{a.travel_start_date}} - {{a.travel_end_date}}</b></p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

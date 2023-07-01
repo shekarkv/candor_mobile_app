@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>PF Ytd Statement</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item no-lines style="padding-top:4%;">
+    <ion-label style="color:#006666;padding-left:0px;"><b>Please Select Financial Year</b></ion-label>
+    <ion-select [(ngModel)]="fyear" (ionChange)="getPfYtdStatement()">
+      <ion-select-option *ngFor="let year of yearList" [value]="year.fin_int_code">{{year.financial_year}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-row style="padding-left:3%;">
+    <ion-col size="4"><b>Code</b></ion-col>
+    <ion-col size="1"><b>:</b></ion-col>
+    <ion-col size="4"><b>{{this.emp_code}}</b></ion-col> 
+  </ion-row>
+
+  <ion-row style="padding-left:3%;">
+    <ion-col size="4"><b>Name</b></ion-col>
+    <ion-col size="1"><b>:</b></ion-col>
+    <ion-col size="6"><b class="ion-text-wrap">{{this.emp_name}}</b></ion-col>
+  </ion-row>
+
+  <ion-row style="padding-left:3%;">
+    <ion-col size="4"><b class="ion-text-wrap">Date of Joining</b></ion-col>
+    <ion-col size="1"><b>:</b></ion-col>
+    <ion-col size="6"><b class="ion-text-wrap">{{this.emp_doj}}</b></ion-col>
+  </ion-row>
+
+  <h4 class="msg" *ngIf="this.pf_data == '' || this.pf_data == 'undefined' || this.pf_data == undefined ">
+    {{loading_msg}}
+  </h4>
+
+  <ion-card *ngFor="let pf of pf_data;" style=" border-top: 2px solid #2a88a0;box-shadow: 2px 2px lightgrey; padding-left:3%;padding-right:3%;padding-bottom:5%;">
+
+    <ion-card-header style="padding:0px;">
+      <ion-label style="color:#2a88a0; padding-left:2%;font-weight:bolder;">{{pf.month_data}}</ion-label>
+    </ion-card-header>
+
+    <ion-row style="background-color:#f2f2f2;">
+      <ion-col size="8">Wages</ion-col>
+      <ion-col size="4" style="text-align:right;font-weight:bolder;">{{pf.wage}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="8" class="ion-text-wrap">PF(Employee's contribution)</ion-col>
+      <ion-col size="4" style="text-align:right;font-weight:bolder;">{{pf.employee_pf}}</ion-col>
+    </ion-row>
+
+    <ion-row style="background-color:#f2f2f2;">
+      <ion-col size="8">VPF</ion-col>
+      <ion-col size="4" style="text-align:right;font-weight:bolder;">{{pf.employee_vpf}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="8" class="ion-text-wrap">PF(Employer's Contribution)</ion-col>
+      <ion-col size="4" style="text-align:right;font-weight:bolder;">{{pf.employer_pf}}</ion-col>
+    </ion-row>
+
+    <ion-row style="background-color:#f2f2f2;">
+      <ion-col size="8" class="ion-text-wrap">Pension</ion-col>
+      <ion-col size="4" style="text-align:right;font-weight:bolder;">{{pf.employer_pension}}</ion-col>
+    </ion-row>
+
+  </ion-card>
+
+</ion-content>

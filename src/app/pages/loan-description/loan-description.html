@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Loan Description</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <h4 class="msg" *ngIf="this.loan_des == '' || this.loan_des == 'undefined' || this.loan_des == undefined ">
+    {{loading_msg}}
+  </h4>
+
+  <ion-card *ngFor="let ld of loan_des" style="border-top: 2px solid #7c560e;box-shadow: 2px 2px lightgrey;">
+
+    <ion-card-header style="padding:0px;">
+      <ion-label style="color:#7c560e; padding-left:2%;font-weight:bolder;">{{ld.loan_desc}}</ion-label>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-row>
+        <ion-col size="6">Month</ion-col>
+        <ion-col size="6" style="text-align:right;"><b>{{ld.start_month}}</b></ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">Opening Balance</ion-col>
+        <ion-col size="6" style="text-align:right;"><b>{{ld.opening_balance}}</b></ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">Down Payment</ion-col>
+        <ion-col size="6" style="text-align:right;"><b>{{ld.down_payment}}</b></ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">Closing Balance</ion-col>
+        <ion-col size="6" style="text-align:right;"><b>{{ld.closing_balance}}</b></ion-col>
+      </ion-row>
+
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,24 @@
+<ion-content padding class="ion-text-center box" >
+
+  <img src="assets/imgs/Candor_logo.png" style="margin-top:15%; width:45%;">
+  <br />
+  <ion-item class="animated rubberBand itemfield" style="margin-top:30%; background-color:rgba(255, 255, 255, 0);">
+    <ion-icon style="color:#00334d;" name="person-circle-outline" item-start></ion-icon>
+    <ion-input type="text"  [(ngModel)]="username" placeholder="User Name" name="username" ngModel required></ion-input>
+  </ion-item>
+
+  <ion-item class="animated rubberBand itemfield" style="background-color:rgba(255, 255, 255, 0);">
+    <ion-icon style="color:#00334d;" name="lock-closed-outline" ></ion-icon>
+    <ion-input type="password" labelPlacement="fixed" [(ngModel)]="password" placeholder="Password" name="password" minlength=4 ngModel
+      required></ion-input>
+  </ion-item>
+  <br />
+  <ion-button  color="app" expand="block" shape="round" (click)="login()" >Login</ion-button>
+
+  <br /> <br />
+  <ion-button style='color: white;' fill="clear" expand="block" shape="round" (click)="forgotPassword()" >
+    <u><b>Forgot Password ?</b></u>
+  </ion-button>
+
+
+</ion-content>

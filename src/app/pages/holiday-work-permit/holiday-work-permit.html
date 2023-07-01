@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Holiday Work Permit</ion-title>
+  </ion-toolbar> 
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+
+    <ion-item no-lines>
+      <ion-label stacked>
+        <b>Requesting Employee</b>
+      </ion-label>
+      <ion-input [(ngModel)]="req_emp" type="text" readonly></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked>
+        <b>Employee</b>
+      </ion-label>
+      <ion-select [(ngModel)]="employee" style="padding-left:3% !important;" multiple>
+        <ion-select-option *ngFor="let e of emp_list" [value]="{internal_code: e.emp_int_code}" selected="false">{{e.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked>
+        <b>Date Of Work</b>
+      </ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" style="padding-left:3% !important;" [(ngModel)]="date_of_work">
+      </ion-datetime>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-label stacked><b>Reason</b></ion-label>
+      <ion-textarea [(ngModel)]="reason" text-wrap></ion-textarea>
+    </ion-item>
+
+    <ion-item no-lines style="padding:2% 0 5% 5%;">
+      <button (click)="Submit()" ion-button full float-right style="background-color:#0086d0;height:35px;">
+        <ion-icon name="paper-plane" icon-start></ion-icon>
+        &nbsp;&nbsp;Submit
+      </button>
+    </ion-item>
+
+  </ion-card>
+
+</ion-content>
